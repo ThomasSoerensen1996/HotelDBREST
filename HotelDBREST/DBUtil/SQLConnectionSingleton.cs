@@ -25,7 +25,7 @@ namespace HotelDBREST.DBUtil
          * Lokal database
         */
         protected const String ConnString =
-            @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PeleDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            @"Data Source=thomasdbserver.database.windows.net;Initial Catalog=ThomasDB;User ID=thom9686;Password=Thomas1234;Connect Timeout=60;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         /*
          * Cloud Database

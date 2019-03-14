@@ -9,11 +9,11 @@ namespace HotelDBREST.DBUtil
 {
     public class ManageRoom: IManage<Room>
     {
-        private const String GET_ALL = "select * from DemoRoom";
-        private const String GET_ONE = "select * from DemoRoom WHERE Hotel_No = @HID AND ROOM_No = @RID";
-        private const String DELETE = "delete from DemoRoom WHERE Hotel_No = @HID AND ROOM_No = @RID";
-        private const String INSERT = "insert into DemoRoom values (@RID, @HID, @RType, @Price)";
-        private const String UPDATE = "update DemoRoom " +
+        private const String GET_ALL = "select * from Room";
+        private const String GET_ONE = "select * from Room WHERE Hotel_No = @HID AND ROOM_No = @RID";
+        private const String DELETE = "delete from Room WHERE Hotel_No = @HID AND ROOM_No = @RID";
+        private const String INSERT = "insert into Room values (@RID, @HID, @RType, @Price)";
+        private const String UPDATE = "update Room " +
                                       "SET Hotel_no = @HotelId, Room_No = @RoomId, Types = @RType, Price = @Price " +
                                       "WHERE Hotel_No = @HID AND ROOM_No = @RID";
 
