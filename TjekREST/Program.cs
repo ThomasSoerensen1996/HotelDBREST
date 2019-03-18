@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using HotelDBREST.DBUtil;
@@ -12,7 +15,7 @@ namespace TjekREST
     {
         static void Main(string[] args)
         {
-            
+            /*
              //Hotel
             
              ManageHotel hmgr = new ManageHotel();
@@ -120,6 +123,8 @@ namespace TjekREST
             Console.WriteLine(bmgr.Delete(100));
             Console.WriteLine(bmgr.Get(100));
 
+            
+
             // Facilities
 
             ManageFacilities fmgr = new ManageFacilities();
@@ -145,9 +150,251 @@ namespace TjekREST
 
             Console.WriteLine("Sletter facility:");
             Console.WriteLine(fmgr.Delete(15));
-            Console.WriteLine("Prøver at printe slettet facility: ");
+            Console.WriteLine("Prøver at printe slettet facility: \n\n\n");
             Console.Write(fmgr.Get(15));
 
+            */
+
+            #region Manager
+            ManageHotel hmgr = new ManageHotel();
+            ManageFacilities fmgr = new ManageFacilities();
+            ManageBooking bmgr = new ManageBooking();
+            ManageRoom rmgr = new ManageRoom();
+            ManageGuest gmgr = new ManageGuest();
+            #endregion
+
+            #region RunningWhile
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("DINE MULIGHEDER ER:");
+                Console.WriteLine("Get");
+                Console.WriteLine("Create");
+                Console.WriteLine("Update");
+                Console.WriteLine("Delete");
+                Console.Write(">");
+
+                string decideOption = Console.ReadLine();
+
+                switch (decideOption)
+                {
+                    #endregion
+
+                    #region Get
+
+                    #region WhatDate
+                    case "Get":
+                        Console.Clear();
+                        Console.WriteLine("DINE MULIGHEDER ER:");
+                        Console.WriteLine("Hotel");
+                        Console.WriteLine("Guest");
+                        Console.WriteLine("Room");
+                        Console.WriteLine("Booking");
+                        Console.WriteLine("Facility");
+                        Console.Write(">");
+
+                        string whatData = Console.ReadLine();
+                        switch (whatData)
+                        {
+                            #endregion
+
+                            #region Hotel
+                            case "Hotel":
+                                Console.Clear();
+                                Console.WriteLine("DINE MULIGHEDER ER:");
+                                Console.WriteLine("Alle Hoteller");
+                                Console.WriteLine("Hotel ID");
+                                Console.Write(">");
+
+                                string hvilketHotel = Console.ReadLine();
+                                switch (hvilketHotel)
+                                {
+                                    case "Alle Hoteller":
+                                        Console.Clear();
+                                        foreach (Hotel h in hmgr.Get())
+                                        {
+                                            Console.WriteLine(h);
+                                        }
+                                        Console.ReadLine();
+                                        break;
+                                    case "Hotel ID":
+                                        Console.Clear();
+                                        Console.WriteLine("DINE MULIGHEDER ER:");
+                                        Console.WriteLine("Skriv hvilket ID");
+                                        Console.Write(">");
+
+                                        int hotelID = Convert.ToInt32(Console.ReadLine());
+                                        Console.Clear();
+                                        Console.WriteLine(fmgr.Get(hotelID));
+                                        Console.ReadLine();
+                                        break;
+                                }
+                                break;
+                            #endregion
+
+                            #region Guest
+                            case "Guest":
+                                Console.Clear();
+                                Console.WriteLine("DINE MULIGHEDER ER:");
+                                Console.WriteLine("Alle Guest");
+                                Console.WriteLine("Guest ID");
+                                Console.Write(">");
+
+                                string hvilketGuest = Console.ReadLine();
+                                switch (hvilketGuest)
+                                {
+                                    case "Alle Guest":
+                                        Console.Clear();
+                                        foreach (Guest g in gmgr.Get())
+                                        {
+                                            Console.WriteLine(g);
+                                        }
+                                        Console.ReadLine();
+                                        break;
+                                    case "Guest ID":
+                                        Console.Clear();
+                                        Console.WriteLine("DINE MULIGHEDER ER:");
+                                        Console.WriteLine("Skriv hvilket ID");
+                                        Console.Write(">");
+
+                                        int guestID = Convert.ToInt32(Console.ReadLine());
+                                        Console.Clear();
+                                        Console.WriteLine(gmgr.Get(guestID));
+                                        Console.ReadLine();
+                                        break;                                       
+                                }
+                                break;
+                            #endregion
+
+                            #region Room
+                            case "Room":
+                                Console.Clear();
+                                Console.WriteLine("DINE MULIGHEDER ER:");
+                                Console.WriteLine("Alle Room");
+                                Console.WriteLine("Room ID");
+                                Console.Write(">");
+
+                                string hvilketRoom = Console.ReadLine();
+                                switch (hvilketRoom)
+                                {
+                                    case "Alle Room":
+                                        Console.Clear();
+                                        foreach (Room r in rmgr.Get())
+                                        {
+                                            Console.WriteLine(r);
+                                        }
+                                        Console.ReadLine();
+                                        break;
+                                    case "Room ID":
+                                        Console.Clear();
+                                        Console.WriteLine("DINE MULIGHEDER ER:");
+                                        Console.WriteLine("Skriv room ID & hotel ID");
+                                        Console.Write(">");
+
+                                        int roomID = Convert.ToInt32(Console.ReadLine());
+                                        Console.Write(">");
+                                        int hotelID = Convert.ToInt32(Console.ReadLine());
+                                        Console.Clear();
+                                        Console.WriteLine(rmgr.Get(roomID,hotelID));
+                                        Console.ReadLine();
+                                        break;
+                                }
+                                break;
+                            #endregion
+
+                            #region Booking
+                            case "Booking":
+                                Console.Clear();
+                                Console.WriteLine("DINE MULIGHEDER ER:");
+                                Console.WriteLine("Alle Booking");
+                                Console.WriteLine("Booking ID");
+                                Console.Write(">");
+
+                                string hvilketBooking = Console.ReadLine();
+                                switch (hvilketBooking)
+                                {
+                                    case "Alle Booking":
+                                        Console.Clear();
+                                        foreach (Booking b in bmgr.Get())
+                                        {
+                                            Console.WriteLine(b);
+                                        }
+                                        Console.ReadLine();
+                                        break;
+                                    case "Booking ID":
+                                        Console.Clear();
+                                        Console.WriteLine("DINE MULIGHEDER ER:");
+                                        Console.WriteLine("Skriv hvilket ID");
+                                        Console.Write(">");
+                                        int bookingID = Convert.ToInt32(Console.ReadLine());
+                                        Console.Clear();
+                                        Console.WriteLine(bmgr.Get(bookingID));
+                                        Console.ReadLine();
+                                        break;
+                                }
+                                break;
+
+                            #endregion
+
+                            #region Facility
+                            case "Facility":
+                                Console.Clear();
+                                Console.WriteLine("DINE MULIGHEDER ER:");
+                                Console.WriteLine("Alle Facility");
+                                Console.WriteLine("Facility ID");
+                                Console.Write(">");
+
+                                string hvilketFacility = Console.ReadLine();
+                                switch (hvilketFacility)
+                                {
+                                    case "Alle Facility":
+                                        Console.Clear();
+                                        foreach (Facilities f in fmgr.Get())
+                                        {
+                                            Console.WriteLine(f);
+                                        }
+                                        Console.ReadLine();
+                                        break;
+                                    case "Facility ID":
+                                        Console.Clear();
+                                        Console.WriteLine("DINE MULIGHEDER ER:");
+                                        Console.WriteLine("Skriv hvilket ID");
+                                        Console.Write(">");
+
+                                        int facilityID = Convert.ToInt32(Console.ReadLine());
+                                        Console.Clear();
+                                        Console.WriteLine(fmgr.Get(facilityID));
+                                        break;
+                                }
+                                Console.ReadLine();
+                                break;
+                            #endregion
+                        } break;
+                    #endregion
+
+                    case "Create":
+                        Console.WriteLine(5);
+                        break;
+                    case "Update":
+                        Console.WriteLine(1);
+                        break;
+                    case "Delete":
+                        Console.WriteLine(5);
+                        break;
+
+                }
+            }
+
+
+            
+
+            int bo;
+
+            Console.WriteLine("skriv din facility du vil hente");
+
+            bo = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine(fmgr.Get(bo));
 
             /*
             ManageGuest m = new ManageGuest();
